@@ -1,0 +1,172 @@
+@import 'variables', 'reset', 'function';
+
+body{
+    background: color(nt-very-light-gray);
+}
+
+.main{
+    padding: 2em;
+}
+
+.main__header{
+    width: 100%;
+    text-align: center;
+
+
+    .main__title{
+        font-size: var(--f-size-title);
+        margin: 2em auto .6em auto;
+        color: color(nt-very-dark-blue);
+    }
+    .main__title--styled{
+        display: block;
+        font-weight: 200;
+    }
+
+    .main__text{
+        color: color(nt-grayish-blue);
+        font-size: var(--f-size-p-header);
+    }
+}
+
+.main__board{
+    margin-block: 5em;
+    display: grid;
+    row-gap: 2em;
+}
+
+.main__board__block{
+    width: 100%;
+    position: relative;
+    background: color(nt-white);
+    padding: 1.5em 2em;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px -5px rgba(0, 48, 136, 0.205);
+
+    &::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 4px;
+        top: 0;
+        left: 0;
+        background: color(pr-cyan);
+
+    }
+
+    .block__title{
+        font-size: var(--f-size-subtitle);
+        margin-bottom: .2em;
+        color: color(nt-very-dark-blue);
+        margin-top: .3em;
+    }
+
+    .block__text{
+        font-size: var(--f-size-text);
+        color: color(nt-grayish-blue);
+    }
+
+    .block__image{
+        float: right;
+        margin-top: 2.5em;
+    }
+}
+
+@for $i from 2 through 4{
+    @if $i == 2 {
+        .main__board__block:nth-child(#{$i}){
+            &::before{
+                background: color(pr-red);
+            }
+        }   
+    } @else if $i == 3{
+        .main__board__block:nth-child(#{$i}){
+            &::before{
+                background: color(pr-orange);
+            }
+        }   
+    } @else if $i = 4{
+        .main__board__block:nth-child(#{$i}){
+            &::before{
+                background: color(pr-blue);
+            }
+        }   
+    }
+}
+
+
+@media (min-width: 700px){
+
+    :root{
+
+        --f-size-title: 2.45rem;
+        --f-size-subtitle: 1.35em;
+        --f-size--text: .9rem;
+        --f-size-p-header: 1rem;
+    }
+
+    .main{
+        display: grid;
+        place-items: center;
+        place-content: center;
+        padding: 0;
+        margin: 0;
+    }
+    .container{
+        max-width: 1100px;
+
+    }
+
+
+    .main__header{
+        margin-inline: auto;
+        max-width: 520px;
+
+        .main__title{
+            margin-bottom: .5em;
+
+        }
+
+        .main__text{
+            line-height: 1.7;
+        }
+    }
+
+    .grid{
+        padding-inline: 2em;
+        display: grid;
+        grid-template-areas: ". two ." "one two four" "one three four" ". three .";
+        column-gap: 2em;
+        @for $i from 1 through 4{
+            @if $i == 1 {
+                .main__board__block:nth-child(#{$i}){
+                    grid-area: one;
+                }
+            }@else if $i == 2 {
+                .main__board__block:nth-child(#{$i}){
+                    grid-area: two;
+                }   
+            } @else if $i == 3{
+                .main__board__block:nth-child(#{$i}){
+                    grid-area: three;
+                }   
+            } @else if $i = 4{
+                .main__board__block:nth-child(#{$i}){
+                    grid-area: four;
+                }   
+            }
+        }
+
+    }
+    .main__board__block{
+
+   .block__title{
+        margin-bottom: .4em;
+    }
+    .block__text{
+        line-height: 1.8;
+    }
+}
+
+}

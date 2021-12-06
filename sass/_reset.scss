@@ -1,0 +1,13 @@
+*, *::after, *::before{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    --f-size-title: 1.6rem;
+    --f-size-p-header: 1rem;
+    --f-size-text: .85rem;
+    --f-size-subtitle: 1.3em;
+}
